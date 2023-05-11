@@ -27,3 +27,4 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim >  ~/.local/share/
 [ ] Setup Telescope
 [ ] Setup Treesitter (and understand what it does exactly)
 [ ] Setup Harpoon
+[ ] Setup fugitive
