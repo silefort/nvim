@@ -29,3 +29,6 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim >  ~/.local/share/
 [ ] Setup Harpoon
 [ ] Setup Undotree
 [ ] Setup fugitive
+[ ] How to remove files from harpoon ?
+[ ] Add my keybindings
+[ ] Add my regular vim setups
