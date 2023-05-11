@@ -15,3 +15,7 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim >  ~/.local/share/
 
 ## Commands :
 :PackerSync : Clean, Update, Install and Regenerate Compiled Packer leader file
+
+## Todo :
+[ ] Setup Packer (Check documentation) (auto Sync...)
+[ ] Setup Telescope
