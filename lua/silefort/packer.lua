@@ -18,6 +18,8 @@ return require('packer').startup(function(use)
 		vim.cmd('set background=light')
 	end
   })
+
+  use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use ('ThePrimeagen/harpoon')
 
 end)
