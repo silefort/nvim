@@ -18,4 +18,6 @@ return require('packer').startup(function(use)
 		vim.cmd('set background=light')
 	end
   })
+  use ('ThePrimeagen/harpoon')
+
 end)
