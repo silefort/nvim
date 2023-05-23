@@ -26,9 +26,11 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim >  ~/.local/share/
 [ ] Setup Packer (Check documentation) (auto Sync...)
 [ ] Setup Telescope
 [ ] Setup Treesitter (and understand what it does exactly)
-[ ] Setup Harpoon
+[ ] Setup Harpoon properly (with new bindings, h/n/p/s/t doesn't work for me)
 [ ] Setup Undotree
 [ ] Setup fugitive
 [ ] How to remove files from harpoon ?
 [ ] Add my keybindings
 [ ] Add my regular vim setups
+[ ] Create a proper cheatsheet in this readme with all the remappings and commands
+[ ] Always ignore un~ and swp files
