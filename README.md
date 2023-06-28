@@ -8,16 +8,32 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim >  ~/.local/share/
 
 
 ## Remaps : 
-<C-e> Open harpoon
-<C-h> Go to first file in harpoon list
-<C-n> Go to third file in harpoon list
-<C-p>  : Find file in current git repository
-<C-s> Go to fourth file in harpoon list
-<C-t> Go to second file in harpoon list
-<leader>a Add the current file to harpoon
-<leader>pf Find file in current directory using Telescope
-<leader>ps Find string in current directory files
-<leader>pv :Ex (Open Netrw)
+
+### File Navigation
+
+<C-n>       Ex (Open Netrw)
+<C-e>       Open harpoon
+<leader>ha  Add the current file to harpoon
+<leader>vs  Create a new vertical split
+
+### Searching tools
+<leader>ff  Find file in current directory using Telescope
+<leader>ffg Find file in current git repository
+<leader>fs  Find string in current directory files
+
+### File Manipulation
+<leader>s   Save current buffer
+<leader>sa  Select all text in buffer
+
+### Insert tools
+jj          Esc
+<leader>sl  Split line
+<leader>lb  Add line before
+<leader>la  Add line after
+<leader>pp  Toggle Paste Mode
+
+### Misc
+<leader>nn  Toggle line numbers (for massive copy/paste)
 
 ## Commands :
 :PackerSync : Clean, Update, Install and Regenerate Compiled Packer leader file
