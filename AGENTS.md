@@ -49,6 +49,27 @@ Le script `tests/check.sh` contiendra les validations automatisables.
 - Leader key : `<Space>`
 - Un commit par feature validée
 - Les messages de commit suivent les **Conventional Commits** (voir ci-dessous)
+- Chaque nouvelle feature démarre sur une **branche dédiée**
+- Chaque feature terminée se clôture par un `git push` de la branche sur le remote
+
+## Branches
+
+Format : `<type>-<scope>-<description-avec-tirets>`
+
+Même vocabulaire que les Conventional Commits, mais :
+- Les espaces sont remplacés par des `-`
+- Pas de parenthèses autour du scope
+- Tout en minuscules
+
+**Exemples :**
+```
+feat-keymaps-ajouter-leader-ff-telescope
+feat-lsp-activer-inlay-hints
+fix-treesitter-crash-fichiers-sans-parser
+chore-plugins-mise-a-jour-lazy-nvim
+refactor-core-separer-options-et-autocmds
+docs-agents-documenter-conventions-branches
+```
 
 ## Messages de commit — Conventional Commits
 
