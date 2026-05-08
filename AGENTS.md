@@ -117,7 +117,11 @@ WIP                                    # jamais commiter du WIP
 
 ## Features implémentées
 
-_(vide pour l'instant — se remplit au fil des itérations)_
+| Feature | Branche | Description |
+|---------|---------|-------------|
+| Init arborescence | `feat-init-arborescence-de-base` | Structure `lua/`, `tests/check.sh`, vérification headless |
+| Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
+| Bootstrap lazy.nvim | `feat-plugins-bootstrap-lazy-nvim` | Clone + setup lazy.nvim, `:Lazy` disponible |
 
 ## Backlog / idées
 
