@@ -39,6 +39,15 @@ echo "Vérification d'une action inconnue..."
 run -c 'Buffer inexistante'
 echo "OK"
 
+# :Commands ouvre le picker Telescope (si telescope est installé).
+echo "Vérification du picker Telescope pour :Commands..."
+if nvim --headless -u "$ROOT/init.lua" -c 'lua if not pcall(require, "telescope") then vim.cmd("cquit") end' +qa 2>/dev/null; then
+  run -c 'lua local ok, err = pcall(vim.cmd, "silent! Commands"); assert(ok, "Commands a échoué : " .. tostring(err))'
+  echo "OK"
+else
+  echo "IGNORÉ (telescope non installé — lance :Lazy install)"
+fi
+
 # :Lazy est enregistrée (lazy.nvim nécessite nvim >= 0.8.0).
 echo "Vérification de :Lazy..."
 if nvim --headless -u NONE -c 'lua if vim.fn.has("nvim-0.8") == 0 then vim.cmd("cquit") end' +qa 2>/dev/null; then

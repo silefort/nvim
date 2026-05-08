@@ -58,29 +58,69 @@ function M.register(object, action, fn, opts)
   }
 end
 
-vim.api.nvim_create_user_command("Commands", function()
-  local lines = {}
-  local objects = vim.tbl_keys(M._registry)
-  table.sort(objects)
-  for _, object in ipairs(objects) do
-    local actions = vim.tbl_keys(M._registry[object])
-    table.sort(actions)
-    for _, action in ipairs(actions) do
-      local entry = M._registry[object][action]
-      local label = pascal_case(object) .. " " .. action
-      table.insert(lines, { { label, "Title" }, { "  " .. entry.desc, "Comment" } })
+local function commands_picker()
+  local entries = {}
+  for object, actions in pairs(M._registry) do
+    for action, entry in pairs(actions) do
+      table.insert(entries, {
+        object = object,
+        action = action,
+        label  = pascal_case(object) .. " " .. action,
+        desc   = entry.desc or "",
+      })
     end
   end
-  if #lines == 0 then
-    vim.api.nvim_echo({ { "Aucune commande enregistrée.", "WarningMsg" } }, true, {})
+
+  if #entries == 0 then
+    vim.notify("Aucune commande enregistrée.", vim.log.levels.WARN)
     return
   end
-  for _, chunks in ipairs(lines) do
-    vim.api.nvim_echo(chunks, true, {})
+
+  table.sort(entries, function(a, b) return a.label < b.label end)
+
+  local ok = pcall(require, "telescope.pickers")
+  if not ok then
+    vim.notify("Telescope n'est pas chargé. Lance :Lazy install.", vim.log.levels.ERROR)
+    return
   end
+
+  local pickers      = require("telescope.pickers")
+  local finders      = require("telescope.finders")
+  local conf         = require("telescope.config").values
+  local actions      = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+  pickers.new({}, {
+    prompt_title = "Commands",
+    finder = finders.new_table({
+      results = entries,
+      entry_maker = function(e)
+        return {
+          value   = e,
+          display = string.format("%-24s  %s", e.label, e.desc),
+          ordinal = e.label .. " " .. e.desc,
+        }
+      end,
+    }),
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, _)
+      actions.select_default:replace(function()
+        local sel = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        if sel then
+          vim.api.nvim_input(":" .. sel.value.label .. " ")
+        end
+      end)
+      return true
+    end,
+  }):find()
+end
+
+vim.api.nvim_create_user_command("Commands", function()
+  commands_picker()
 end, {
   nargs = 0,
-  desc = "Lister toutes les commandes object-action disponibles",
+  desc = "Ouvrir le picker Telescope des commandes object-action",
 })
 
 function M.setup()

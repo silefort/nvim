@@ -16,7 +16,7 @@ if (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.opt.rtp:prepend(lazypath)
   local ok, lazy = pcall(require, "lazy")
   if ok then
-    lazy.setup({})
+    lazy.setup({ { import = "plugins" } })
   else
     vim.notify("lazy.nvim : échec du chargement — nvim >= 0.8.0 requis", vim.log.levels.WARN)
   end
