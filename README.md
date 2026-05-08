@@ -48,9 +48,14 @@ de Neovim. Chaque objet devient une commande `:<Object>` avec complétion des ve
 ### Utilisation
 
 ```
-:Buffer <Tab>        → close, save          (complétion des verbes)
+:Buffer <Tab>        → close, reload, save  (complétion des verbes)
 :Buffer save         → sauvegarde le buffer courant
 :Buffer close        → ferme le buffer courant
+:Buffer reload       → recharge le buffer depuis le disque (edit!)
+:File search         → chercher un fichier par nom (telescope find_files)
+:File list recent    → lister les fichiers récemment édités (telescope oldfiles)
+:File list <Tab>     → complète : recent
+:String search       → chercher une chaîne dans le projet (telescope live_grep)
 :Commands            → ouvre un picker Telescope (filtrage live, <Enter> préremplit la cmdline)
 ```
 
@@ -125,8 +130,11 @@ vim.keymap.set("n", "<leader>bs", function() cmd._registry.buffer.save.fn() end)
 | Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
 | Bootstrap lazy.nvim  | `feat-plugins-bootstrap-lazy-nvim`   | Clone + setup lazy.nvim, `:Lazy` disponible |
 | Picker `:Commands`   | `feat-commands-picker-telescope`     | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
+| Buffer reload        | `feat-commands-buffer-reload`        | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
+| Objets `:File` et `:String` | `feat-commands-ajouter-objets-file-et-string` | `:File search`, `:File list recent`, `:String search` via Telescope |
 
 ## Backlog
 
 - `lua/core/options.lua` — options de base (numérotation, indentation…)
-- `lua/core/keymaps.lua` — keymaps branchés sur le registre de commandes
+- `lua/core/keymaps.lua` — keymaps de navigation fichier (`<leader>f*`) branchés sur le registre (`:File search`, `:String search`, `:File list recent`)
+- Oil.nvim — explorateur de fichiers façon buffer (rename/move via édition de texte)

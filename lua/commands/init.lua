@@ -125,6 +125,8 @@ end, {
 
 function M.setup()
   require("commands.buffer")
+  require("commands.file")
+  require("commands.string")
 end
 
 return M
