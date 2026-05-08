@@ -51,7 +51,7 @@ de Neovim. Chaque objet devient une commande `:<Object>` avec complétion des ve
 :Buffer <Tab>        → close, save          (complétion des verbes)
 :Buffer save         → sauvegarde le buffer courant
 :Buffer close        → ferme le buffer courant
-:Commands            → liste toutes les commandes enregistrées
+:Commands            → ouvre un picker Telescope (filtrage live, <Enter> préremplit la cmdline)
 ```
 
 `:Bu<Tab>` complète en `:Buffer` — c'est la complétion de nom de commande intégrée
@@ -124,9 +124,9 @@ vim.keymap.set("n", "<leader>bs", function() cmd._registry.buffer.save.fn() end)
 | Init arborescence | `feat-init-arborescence-de-base` | Structure `lua/`, `tests/check.sh`, vérification headless |
 | Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
 | Bootstrap lazy.nvim  | `feat-plugins-bootstrap-lazy-nvim`   | Clone + setup lazy.nvim, `:Lazy` disponible |
+| Picker `:Commands`   | `feat-commands-picker-telescope`     | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
 
 ## Backlog
 
-- `:Commands` → picker Telescope avec filtrage live (`<Enter>` préremplit la cmdline)
 - `lua/core/options.lua` — options de base (numérotation, indentation…)
 - `lua/core/keymaps.lua` — keymaps branchés sur le registre de commandes

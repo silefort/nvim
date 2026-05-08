@@ -122,6 +122,7 @@ WIP                                    # jamais commiter du WIP
 | Init arborescence | `feat-init-arborescence-de-base` | Structure `lua/`, `tests/check.sh`, vérification headless |
 | Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
 | Bootstrap lazy.nvim | `feat-plugins-bootstrap-lazy-nvim` | Clone + setup lazy.nvim, `:Lazy` disponible |
+| Picker `:Commands`  | `feat-commands-picker-telescope`   | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
 
 ## Backlog / idées
 
