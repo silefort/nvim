@@ -50,7 +50,7 @@ Le script `tests/check.sh` contiendra les validations automatisables.
 - Un commit par feature validée
 - Les messages de commit suivent les **Conventional Commits** (voir ci-dessous)
 - Chaque nouvelle feature démarre sur une **branche dédiée**
-- Chaque feature terminée se clôture par un `git push` de la branche sur le remote
+- Chaque feature terminée se clôture par un `git push` — l'agent fournit la commande, l'utilisateur l'exécute lui-même
 
 ## Branches
 
