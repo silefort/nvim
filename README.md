@@ -1,18 +1,31 @@
 # Neovim Config
 
 Configuration Neovim personnalisée, construite feature par feature en mode TDD.
-Lua uniquement. Plugin manager : lazy.nvim (pas encore installé).
+Lua uniquement. Plugin manager : lazy.nvim.
 
 ## Structure
 
 ```
-├── init.lua              # Point d'entrée
+├── init.lua              # Point d'entrée + bootstrap lazy.nvim
 ├── lua/
 │   ├── commands/         # Langage de commandes object-action
 │   ├── core/             # Options, keymaps, autocmds (à venir)
-│   └── plugins/          # Un fichier par plugin (à venir)
+│   └── plugins/          # Un fichier par plugin lazy (à venir)
 └── tests/
     └── check.sh          # Validations headless automatisables
+```
+
+## Prérequis
+
+- Neovim >= 0.8.0
+- Git (pour le clone automatique de lazy.nvim au premier lancement)
+
+## Premier lancement
+
+Le bootstrap dans `init.lua` clone lazy.nvim automatiquement si absent :
+
+```sh
+nvim   # clone lazy.nvim, puis ouvre normalement
 ```
 
 ## Lancer les tests
@@ -22,7 +35,8 @@ bash tests/check.sh
 ```
 
 Chaque check doit sortir avec code 0. Un `Error detected` en mode headless n'est pas
-fatal si la ligne suivante affiche `OK` (cas normal pour `vim.notify(ERROR)`).
+fatal si la ligne suivante affiche `OK` (cas normal pour `vim.notify`). Les checks
+marqués `IGNORÉ` signalent une dépendance non satisfaite (ex. nvim < 0.8.0).
 
 ---
 
@@ -109,9 +123,10 @@ vim.keymap.set("n", "<leader>bs", function() cmd._registry.buffer.save.fn() end)
 |---------|---------|-------------|
 | Init arborescence | `feat-init-arborescence-de-base` | Structure `lua/`, `tests/check.sh`, vérification headless |
 | Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
+| Bootstrap lazy.nvim  | `feat-plugins-bootstrap-lazy-nvim`   | Clone + setup lazy.nvim, `:Lazy` disponible |
 
 ## Backlog
 
+- `:Commands` → picker Telescope avec filtrage live (`<Enter>` préremplit la cmdline)
 - `lua/core/options.lua` — options de base (numérotation, indentation…)
 - `lua/core/keymaps.lua` — keymaps branchés sur le registre de commandes
-- lazy.nvim bootstrap

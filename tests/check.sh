@@ -38,3 +38,12 @@ echo "OK"
 echo "Vérification d'une action inconnue..."
 run -c 'Buffer inexistante'
 echo "OK"
+
+# :Lazy est enregistrée (lazy.nvim nécessite nvim >= 0.8.0).
+echo "Vérification de :Lazy..."
+if nvim --headless -u NONE -c 'lua if vim.fn.has("nvim-0.8") == 0 then vim.cmd("cquit") end' +qa 2>/dev/null; then
+  run -c 'lua assert(vim.api.nvim_get_commands({}).Lazy, ":Lazy non enregistrée")'
+  echo "OK"
+else
+  echo "IGNORÉ (nvim < 0.8.0)"
+fi
