@@ -123,6 +123,7 @@ WIP                                    # jamais commiter du WIP
 | Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
 | Bootstrap lazy.nvim | `feat-plugins-bootstrap-lazy-nvim` | Clone + setup lazy.nvim, `:Lazy` disponible |
 | Picker `:Commands`  | `feat-commands-picker-telescope`   | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
+| Buffer reload       | `feat-commands-buffer-reload`      | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
 
 ## Backlog / idées
 
