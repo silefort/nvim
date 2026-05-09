@@ -123,6 +123,25 @@ end, {
   desc = "Ouvrir le picker Telescope des commandes object-action",
 })
 
+vim.opt.wildcharm = vim.fn.char2nr("\t")
+
+local TAB = vim.api.nvim_replace_termcodes("<Tab>", true, false, true)
+
+vim.keymap.set("c", "<Tab>", function()
+  if vim.fn.getcmdtype() ~= ":" then
+    return TAB
+  end
+  local cmd_name = vim.fn.getcmdline():match("^%s*(%S+)$")
+  if cmd_name then
+    for object in pairs(M._registry) do
+      if pascal_case(object) == cmd_name then
+        return " " .. TAB
+      end
+    end
+  end
+  return TAB
+end, { expr = true, desc = "Auto-espace + complétion sur :Object<Tab>" })
+
 function M.setup()
   require("commands.buffer")
   require("commands.file")

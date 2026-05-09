@@ -124,6 +124,7 @@ WIP                                    # jamais commiter du WIP
 | Bootstrap lazy.nvim | `feat-plugins-bootstrap-lazy-nvim` | Clone + setup lazy.nvim, `:Lazy` disponible |
 | Picker `:Commands`  | `feat-commands-picker-telescope`   | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
 | Buffer reload       | `feat-commands-buffer-reload`      | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
+| Auto-tab cmdline    | `fix-commands-file-list-defaut-recent` | `<Tab>` après `:Object` insère l'espace et déclenche la complétion des actions |
 
 ## Backlog / idées
 

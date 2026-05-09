@@ -57,6 +57,8 @@ test_case ":String enregistrée" nvim_run -c 'lua assert(vim.api.nvim_get_comman
 test_case "registre file/search, file/list et string/search" nvim_run -c 'lua local r = require("commands")._registry; assert(r.file and r.file.search and r.file.list, "registre file incomplet"); assert(r.string and r.string.search, "registre string incomplet")'
 test_case ":File list sans argument ne crashe pas" nvim_run -c 'File list'
 test_case ":File list filtre inconnu ne crashe pas" nvim_run -c 'File list foobar'
+test_case "wildcharm = <Tab>" nvim_run -c 'lua assert(vim.o.wildcharm == 9, "wildcharm doit valoir 9 (Tab), reçu " .. tostring(vim.o.wildcharm))'
+test_case "<Tab> mappé en cmdline" nvim_run -c 'lua assert(vim.fn.maparg("<Tab>", "c") ~= "", "<Tab> non mappé en cmdline")'
 
 if has_telescope; then
   test_case ":Commands ouvre le picker Telescope" nvim_run -c 'lua local ok, err = pcall(vim.cmd, "silent! Commands"); assert(ok, "Commands a échoué : " .. tostring(err))'
