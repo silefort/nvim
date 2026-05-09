@@ -12,6 +12,12 @@ nvim_run() {
   nvim --headless -u "$ROOT/init.lua" "$@" +'qa!' 2>&1
 }
 
+# Simule un repo à chemin non-standard (XDG_CONFIG_HOME différent du repo).
+# Détecte les bugs où stdpath("config") ne pointe pas vers le repo.
+nvim_run_offpath() {
+  XDG_CONFIG_HOME=/tmp nvim --headless -u "$ROOT/init.lua" "$@" +'qa!' 2>&1
+}
+
 test_case() {
   local name="$1"; shift
   local output
@@ -53,7 +59,9 @@ echo "Running tests..."
 echo
 
 test_case "démarrage headless" nvim_run
+test_case "démarrage depuis XDG_CONFIG_HOME non-standard" nvim_run_offpath
 test_case "chargement du module commands" nvim_run -c 'lua require("commands")'
+test_case "chargement commands depuis XDG_CONFIG_HOME non-standard" nvim_run_offpath -c 'lua require("commands")'
 test_case ":Buffer enregistrée" nvim_run -c 'lua assert(vim.api.nvim_get_commands({}).Buffer, ":Buffer non enregistrée")'
 test_case ":Commands enregistrée" nvim_run -c 'lua assert(vim.api.nvim_get_commands({}).Commands, ":Commands non enregistrée")'
 test_case "registre buffer/save et buffer/close" nvim_run -c 'lua local r = require("commands")._registry; assert(r.buffer and r.buffer.save and r.buffer.close, "registre incomplet")'
