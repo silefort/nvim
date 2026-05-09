@@ -37,6 +37,12 @@ has_telescope() {
     +'qa!' >/dev/null 2>&1
 }
 
+has_tmux_navigator() {
+  nvim --headless -u "$ROOT/init.lua" \
+    -c 'lua if vim.fn.maparg("<C-h>", "n") == "" then vim.cmd("cquit") end' \
+    +'qa!' >/dev/null 2>&1
+}
+
 has_nvim_08() {
   nvim --headless -u NONE \
     -c 'lua if vim.fn.has("nvim-0.8") == 0 then vim.cmd("cquit") end' \
@@ -59,6 +65,15 @@ test_case ":File list sans argument ne crashe pas" nvim_run -c 'File list'
 test_case ":File list filtre inconnu ne crashe pas" nvim_run -c 'File list foobar'
 test_case "wildcharm = <Tab>" nvim_run -c 'lua assert(vim.o.wildcharm == 9, "wildcharm doit valoir 9 (Tab), reçu " .. tostring(vim.o.wildcharm))'
 test_case "<Tab> mappé en cmdline" nvim_run -c 'lua assert(vim.fn.maparg("<Tab>", "c") ~= "", "<Tab> non mappé en cmdline")'
+
+if has_tmux_navigator; then
+  test_case "<C-h> mappé en mode normal" nvim_run -c 'lua assert(vim.fn.maparg("<C-h>", "n") ~= "", "<C-h> non mappé")'
+  test_case "<C-j> mappé en mode normal" nvim_run -c 'lua assert(vim.fn.maparg("<C-j>", "n") ~= "", "<C-j> non mappé")'
+  test_case "<C-k> mappé en mode normal" nvim_run -c 'lua assert(vim.fn.maparg("<C-k>", "n") ~= "", "<C-k> non mappé")'
+  test_case "<C-l> mappé en mode normal" nvim_run -c 'lua assert(vim.fn.maparg("<C-l>", "n") ~= "", "<C-l> non mappé")'
+else
+  test_skip "<C-h/j/k/l> mappés" "vim-tmux-navigator non installé (lance :Lazy install)"
+fi
 
 if has_telescope; then
   test_case ":Commands ouvre le picker Telescope" nvim_run -c 'lua local ok, err = pcall(vim.cmd, "silent! Commands"); assert(ok, "Commands a échoué : " .. tostring(err))'
