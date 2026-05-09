@@ -6,7 +6,7 @@ set -euo pipefail
 ROOT="$(dirname "$0")/.."
 
 run() {
-  nvim --headless -u "$ROOT/init.lua" "$@" +qa 2>&1
+  nvim --headless -u "$ROOT/init.lua" "$@" +'qa!' 2>&1
 }
 
 # La config doit démarrer proprement en mode headless.
