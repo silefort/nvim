@@ -1,5 +1,6 @@
 -- Neovim config — point d'entrée
-vim.opt.runtimepath:prepend(vim.fn.fnamemodify(vim.env.MYVIMRC, ":h"))
+local config_dir = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+vim.opt.runtimepath:prepend(config_dir)
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -18,6 +19,7 @@ if (vim.uv or vim.loop).fs_stat(lazypath) then
   if ok then
     lazy.setup({ { import = "plugins" } }, {
       change_detection = { notify = false },
+      performance = { rtp = { paths = { config_dir } } },
     })
   else
     vim.notify("lazy.nvim : échec du chargement — nvim >= 0.8.0 requis", vim.log.levels.WARN)
