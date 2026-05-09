@@ -125,6 +125,7 @@ WIP                                    # jamais commiter du WIP
 | Picker `:Commands`  | `feat-commands-picker-telescope`   | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
 | Buffer reload       | `feat-commands-buffer-reload`      | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
 | Auto-tab cmdline    | `fix-commands-file-list-defaut-recent` | `<Tab>` après `:Object` insère l'espace et déclenche la complétion des actions |
+| Tmux navigator      | `feat-plugins-tmux-navigator-seamless-hjkl` | Navigation seamless `<C-h/j/k/l>` entre splits nvim et panes tmux |
 
 ## Backlog / idées
 

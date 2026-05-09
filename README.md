@@ -132,6 +132,7 @@ vim.keymap.set("n", "<leader>bs", function() cmd._registry.buffer.save.fn() end)
 | Picker `:Commands`   | `feat-commands-picker-telescope`     | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
 | Buffer reload        | `feat-commands-buffer-reload`        | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
 | Objets `:File` et `:String` | `feat-commands-ajouter-objets-file-et-string` | `:File search`, `:File list recent`, `:String search` via Telescope |
+| Tmux navigator      | `feat-plugins-tmux-navigator-seamless-hjkl` | Navigation seamless `<C-h/j/k/l>` entre splits nvim et panes tmux |
 
 ## Backlog
 
