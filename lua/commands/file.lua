@@ -16,10 +16,7 @@ end
 local list_filters = { recent = function(b) b.oldfiles() end }
 
 local function list(filter)
-  if filter == nil then
-    vim.notify("File list: argument requis (recent)", vim.log.levels.ERROR)
-    return
-  end
+  filter = filter or "recent"
   local handler = list_filters[filter]
   if not handler then
     vim.notify("File list: filtre inconnu '" .. filter .. "'", vim.log.levels.ERROR)
