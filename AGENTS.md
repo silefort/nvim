@@ -134,9 +134,9 @@ WIP                                    # jamais commiter du WIP
 |---------|---------|-------------|
 | Init lazyvim | `lazyvim` | Page blanche, harness de tests minimal, doc adaptée |
 | Installer LazyVim | `lazyvim` | Bootstrap lazy.nvim + spec `LazyVim/LazyVim`, tests via `:Lazy! sync` |
+| tmux-navigator | `feat-plugins-tmux-navigator-seamless-hjkl` | Navigation seamless nvim↔tmux via `<C-h/j/k/l>`, overrides des defaults LazyVim |
 
 ## Backlog / idées
 
-- Ajouter des overrides dans `lua/config/options.lua`, `keymaps.lua`, `autocmds.lua`
 - Choisir/configurer un colorscheme via `lua/plugins/colorscheme.lua`
 - Activer des extras LazyVim (LSP par langage, AI, etc.)

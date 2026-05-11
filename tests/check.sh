@@ -45,6 +45,13 @@ test_case "lazyvim chargeable" \
   nvim_run -c 'lua assert(pcall(require, "lazyvim"), "require(\"lazyvim\") a échoué")'
 test_case "lazyvim.config chargeable" \
   nvim_run -c 'lua assert(pcall(require, "lazyvim.config"), "require(\"lazyvim.config\") a échoué")'
+test_case "plugin vim-tmux-navigator installé" \
+  nvim_run -c 'lua assert(vim.fn.isdirectory(vim.fn.stdpath("data") .. "/lazy/vim-tmux-navigator") == 1, "plugin absent")'
+test_case ":TmuxNavigateLeft enregistrée (stub lazy)" \
+  nvim_run -c 'lua assert(vim.fn.exists(":TmuxNavigateLeft") == 2, "commande non enregistrée")'
+test_case "<C-h> surchargée vers TmuxNavigateLeft" \
+  nvim_run -c 'lua require("config.keymaps")' \
+           -c 'lua local m = vim.fn.maparg("<C-h>", "n"); assert(m:find("TmuxNavigateLeft"), "got: " .. m)'
 
 echo
 TOTAL=$((PASS + FAIL + SKIP))
