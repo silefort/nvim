@@ -4,6 +4,15 @@
 
 Ce repo contient une configuration Neovim personnalisée, construite progressivement en mode TDD : on ajoute une feature à la fois, on la valide, on passe à la suivante.
 
+Il existe deux bases parallèles :
+
+| Branche | Base | Description |
+|---------|------|-------------|
+| `main` | Vanilla | lazy.nvim brut + plugins sélectionnés à la main, sans distribution |
+| `lazyvim` | LazyVim | Fondée sur la distribution [LazyVim](https://github.com/LazyVim/LazyVim) (lazy.nvim + sensible defaults + plugin préconfigurés) |
+
+**Cette branche (`lazyvim`) repart de zéro sur la base LazyVim.** La config vanilla de `main` n'est pas portée ici.
+
 ## Approche de développement
 
 **Cycle de travail :**
@@ -21,12 +30,14 @@ Ce repo contient une configuration Neovim personnalisée, construite progressive
 
 ## Structure cible
 
+Structure LazyVim standard :
+
 ```
 nvim/
-├── init.lua              # Point d'entrée principal
+├── init.lua              # Point d'entrée (importe lua/config/lazy.lua)
 ├── lua/
-│   ├── core/             # Options de base, keymaps, autocmds
-│   └── plugins/          # Un fichier par plugin (ou groupe cohérent)
+│   ├── config/           # Bootstrap et surcharges (lazy.lua, options.lua, keymaps.lua, autocmds.lua)
+│   └── plugins/          # Overrides et ajouts de plugins (un fichier par plugin ou groupe)
 ├── AGENTS.md             # Ce fichier
 └── tests/                # Scripts de validation
 ```
@@ -45,11 +56,11 @@ Le script `tests/check.sh` contiendra les validations automatisables.
 ## Conventions
 
 - Lua uniquement (pas de vimscript)
-- Plugin manager : **lazy.nvim**
+- Plugin manager : **lazy.nvim**, via la distribution **LazyVim**
 - Leader key : `<Space>`
 - Un commit par feature validée
 - Les messages de commit suivent les **Conventional Commits** (voir ci-dessous)
-- Chaque nouvelle feature démarre sur une **branche dédiée**
+- Chaque nouvelle feature démarre sur une **branche dédiée issue de `lazyvim`**
 - Chaque feature terminée se clôture par un `git push` — l'agent fournit la commande, l'utilisateur l'exécute lui-même
 
 ## Branches
@@ -60,6 +71,8 @@ Même vocabulaire que les Conventional Commits, mais :
 - Les espaces sont remplacés par des `-`
 - Pas de parenthèses autour du scope
 - Tout en minuscules
+
+> **Note :** les branches de base (`main`, `lazyvim`) dérogent à ce format — ce sont des branches longue durée, pas des features. Les feature-branches issues de `lazyvim` suivent le format normal.
 
 **Exemples :**
 ```
@@ -117,16 +130,8 @@ WIP                                    # jamais commiter du WIP
 
 ## Features implémentées
 
-| Feature | Branche | Description |
-|---------|---------|-------------|
-| Init arborescence | `feat-init-arborescence-de-base` | Structure `lua/`, `tests/check.sh`, vérification headless |
-| Langage de commandes | `feat-commands-langage-object-action` | Registre object-action, `:Buffer`, `:Commands` |
-| Bootstrap lazy.nvim | `feat-plugins-bootstrap-lazy-nvim` | Clone + setup lazy.nvim, `:Lazy` disponible |
-| Picker `:Commands`  | `feat-commands-picker-telescope`   | `:Commands` ouvre un picker Telescope, `<Enter>` préremplit la cmdline |
-| Buffer reload       | `feat-commands-buffer-reload`      | `:Buffer reload` recharge le buffer courant depuis le disque (`edit!`) |
-| Auto-tab cmdline    | `fix-commands-file-list-defaut-recent` | `<Tab>` après `:Object` insère l'espace et déclenche la complétion des actions |
-| Tmux navigator      | `feat-plugins-tmux-navigator-seamless-hjkl` | Navigation seamless `<C-h/j/k/l>` entre splits nvim et panes tmux |
+_(branche fraîche — aucune feature encore)_
 
 ## Backlog / idées
 
-_(à alimenter au fil de la conversation)_
+- Installer LazyVim (clone du starter ou import de `LazyVim/LazyVim` via spec lazy.nvim)
