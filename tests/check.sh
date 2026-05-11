@@ -31,10 +31,20 @@ test_skip() {
   SKIP=$((SKIP + 1))
 }
 
+echo "Setup : installation des plugins (premier run = clone réseau, peut être long)..."
+nvim --headless -u "$ROOT/init.lua" "+Lazy! sync" +'qa!' 2>&1 | tail -5
+echo
+
 echo "Running tests..."
 echo
 
 test_case "démarrage headless" nvim_run
+test_case ":Lazy enregistrée" \
+  nvim_run -c 'lua assert(vim.api.nvim_get_commands({}).Lazy, ":Lazy non enregistrée")'
+test_case "lazyvim chargeable" \
+  nvim_run -c 'lua assert(pcall(require, "lazyvim"), "require(\"lazyvim\") a échoué")'
+test_case "lazyvim.config chargeable" \
+  nvim_run -c 'lua assert(pcall(require, "lazyvim.config"), "require(\"lazyvim.config\") a échoué")'
 
 echo
 TOTAL=$((PASS + FAIL + SKIP))
