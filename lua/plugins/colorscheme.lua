@@ -14,10 +14,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = function()
-        vim.cmd.colorscheme("solarized")
-        vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
-      end,
+      colorscheme = "solarized",
     },
   },
 }

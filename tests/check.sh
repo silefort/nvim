@@ -56,8 +56,8 @@ test_case "background = light" \
   nvim_run -c 'lua assert(vim.o.background == "light", "background actuel: " .. vim.o.background)'
 test_case "colorscheme actif: solarized" \
   nvim_run -c 'lua assert(vim.g.colors_name == "solarized", "colors_name: " .. tostring(vim.g.colors_name))'
-test_case "Normal sans bg (terminal traverse)" \
-  nvim_run -c 'lua local hl = vim.api.nvim_get_hl(0, {name="Normal"}); assert(hl.bg == nil, "Normal.bg = " .. tostring(hl.bg))'
+test_case "Normal a un bg (solarized opaque)" \
+  nvim_run -c 'lua local hl = vim.api.nvim_get_hl(0, {name="Normal"}); assert(hl.bg ~= nil, "Normal.bg devrait etre defini")'
 
 echo
 TOTAL=$((PASS + FAIL + SKIP))
