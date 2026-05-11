@@ -54,8 +54,8 @@ test_case "<C-h> surchargée vers TmuxNavigateLeft (sans <C-U>)" \
            -c 'lua local m = vim.fn.maparg("<C-h>", "n"); assert(m == "<Cmd>TmuxNavigateLeft<CR>", "got: " .. m)'
 test_case "background = light" \
   nvim_run -c 'lua assert(vim.o.background == "light", "background actuel: " .. vim.o.background)'
-test_case "colorscheme actif: tokyonight-day" \
-  nvim_run -c 'lua assert(vim.g.colors_name == "tokyonight-day", "colors_name: " .. tostring(vim.g.colors_name))'
+test_case "colorscheme actif: solarized" \
+  nvim_run -c 'lua assert(vim.g.colors_name == "solarized", "colors_name: " .. tostring(vim.g.colors_name))'
 test_case "Normal sans bg (terminal traverse)" \
   nvim_run -c 'lua local hl = vim.api.nvim_get_hl(0, {name="Normal"}); assert(hl.bg == nil, "Normal.bg = " .. tostring(hl.bg))'
 

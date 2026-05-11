@@ -135,7 +135,7 @@ WIP                                    # jamais commiter du WIP
 | Init lazyvim | `lazyvim` | Page blanche, harness de tests minimal, doc adaptée |
 | Installer LazyVim | `lazyvim` | Bootstrap lazy.nvim + spec `LazyVim/LazyVim`, tests via `:Lazy! sync` |
 | tmux-navigator | `feat-plugins-tmux-navigator-seamless-hjkl` | Navigation seamless nvim↔tmux via `<C-h/j/k/l>`, overrides des defaults LazyVim |
-| tokyonight-day transparent | `feat-plugins-tmux-navigator-seamless-hjkl` | Bascule tokyonight en variante `day` + bg transparent pour laisser passer le bg terminal Solarized Light |
+| solarized light transparent | `feat-plugins-tmux-navigator-seamless-hjkl` | Palette Solarized Light (maxmx03/solarized.nvim, neo) + bg transparent pour laisser passer le bg terminal |
 
 ## Backlog / idées
 
