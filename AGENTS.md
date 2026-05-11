@@ -130,8 +130,13 @@ WIP                                    # jamais commiter du WIP
 
 ## Features implémentées
 
-_(branche fraîche — aucune feature encore)_
+| Feature | Branche | Description |
+|---------|---------|-------------|
+| Init lazyvim | `lazyvim` | Page blanche, harness de tests minimal, doc adaptée |
+| Installer LazyVim | `lazyvim` | Bootstrap lazy.nvim + spec `LazyVim/LazyVim`, tests via `:Lazy! sync` |
 
 ## Backlog / idées
 
-- Installer LazyVim (clone du starter ou import de `LazyVim/LazyVim` via spec lazy.nvim)
+- Ajouter des overrides dans `lua/config/options.lua`, `keymaps.lua`, `autocmds.lua`
+- Choisir/configurer un colorscheme via `lua/plugins/colorscheme.lua`
+- Activer des extras LazyVim (LSP par langage, AI, etc.)
